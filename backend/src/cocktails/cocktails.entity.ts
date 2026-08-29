@@ -8,7 +8,7 @@ export class Cocktails {
   @Column({ length: 100, unique: true })
   title: string;
 
-  @Column({ type: 'text', nullable: true})
+  @Column({ type: 'text', nullable: true })
   description: string;
 
   @Column({ name: 'glasstype', type: 'text', nullable: true })
