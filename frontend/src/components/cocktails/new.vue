@@ -7,26 +7,38 @@
       <router-link
         v-if="createdId"
         :to="{ name: 'CocktailDetails', params: { id: createdId } }"
-      >View it</router-link>
+        >View it</router-link
+      >
     </p>
     <p v-if="errorMessage" style="color: red">{{ errorMessage }}</p>
 
     <form @submit.prevent="submitForm">
       <div>
         <label for="title">Title:</label>
-        <input type="text" v-model="form.title" id="title" required>
+        <input type="text" v-model="form.title" id="title" required />
       </div>
       <div>
         <label for="price">Price:</label>
-        <input type="number" step="0.01" min="0" v-model="form.price" id="price" required>
+        <input
+          type="number"
+          step="0.01"
+          min="0"
+          v-model="form.price"
+          id="price"
+          required
+        />
       </div>
       <div>
         <label for="description">Description:</label>
-        <textarea v-model="form.description" id="description" required></textarea>
+        <textarea
+          v-model="form.description"
+          id="description"
+          required
+        ></textarea>
       </div>
       <div>
         <label for="glassType">Glass type (optional):</label>
-        <input type="text" v-model="form.glassType" id="glassType">
+        <input type="text" v-model="form.glassType" id="glassType" />
       </div>
       <button type="submit" :disabled="submitting">
         {{ submitting ? 'Saving...' : 'Submit' }}
@@ -44,7 +56,7 @@ export default {
         title: '',
         price: '',
         description: '',
-        glassType: ''
+        glassType: '',
       },
       submitting: false,
       successMessage: null,
@@ -62,9 +74,9 @@ export default {
         const response = await fetch('http://localhost:3000/cocktails', {
           method: 'POST',
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
           },
-          body: JSON.stringify(this.form)
+          body: JSON.stringify(this.form),
         });
 
         const body = await response.json();
@@ -102,7 +114,8 @@ label {
   display: block;
   margin-bottom: 5px;
 }
-input, textarea {
+input,
+textarea {
   width: 100%;
   padding: 8px;
   box-sizing: border-box;
@@ -114,9 +127,9 @@ button {
   border: none;
   cursor: pointer;
 }
-button:disabled { 
-  background-color: #999; 
-  cursor: not-allowed; 
+button:disabled {
+  background-color: #999;
+  cursor: not-allowed;
 }
 button:hover {
   background-color: #0056b3;

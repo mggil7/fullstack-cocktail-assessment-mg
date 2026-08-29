@@ -31,10 +31,14 @@ export default {
 
     const fetchCocktail = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/cocktails/${props.id}`);
+        const response = await fetch(
+          `http://localhost:3000/cocktails/${props.id}`,
+        );
         const body = await response.json();
         if (!response.ok) {
-          throw new Error(body.message || `HTTP error! status: ${response.status}`);
+          throw new Error(
+            body.message || `HTTP error! status: ${response.status}`,
+          );
         }
         cocktail.value = body;
       } catch (err) {

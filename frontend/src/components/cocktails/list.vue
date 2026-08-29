@@ -4,11 +4,13 @@
     <div v-if="loading">Loading...</div>
     <div v-else-if="error">{{ error }}</div>
     <div v-else>
-       <label for="search">Search by description:</label>
-       <input type="text" id="search" v-model="search" placeholder="e.g. mint" />
+      <label for="search">Search by description:</label>
+      <input type="text" id="search" v-model="search" placeholder="e.g. mint" />
       <ul>
         <li v-for="item in data" :key="item.id">
-          <router-link :to="{ name: 'CocktailDetails', params: { id: item.id } }">
+          <router-link
+            :to="{ name: 'CocktailDetails', params: { id: item.id } }"
+          >
             <span style="font-weight: bold">{{ item.title }}</span>
           </router-link>
           price: {{ item.price }}€
@@ -16,7 +18,6 @@
       </ul>
       <p v-if="data.length === 0">No cocktails match your search.</p>
     </div>
-
   </div>
 </template>
 
@@ -40,7 +41,9 @@ export default {
         const params = search.value
           ? `?search=${encodeURIComponent(search.value)}`
           : '';
-        const response = await fetch(`http://localhost:3000/cocktails${params}`);
+        const response = await fetch(
+          `http://localhost:3000/cocktails${params}`,
+        );
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -64,7 +67,7 @@ export default {
       data,
       loading,
       error,
-      search
+      search,
     };
   },
 };
