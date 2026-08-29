@@ -26,7 +26,7 @@ import { ref, onMounted, watch } from 'vue';
 const SEARCH_DEBOUNCE_MS = 300;
 
 export default {
-  name: 'NewCocktail',
+  name: 'CocktailList',
   setup() {
     const data = ref([]);
     const loading = ref(true);
@@ -40,7 +40,7 @@ export default {
         const params = search.value
           ? `?search=${encodeURIComponent(search.value)}`
           : '';
-        const response = await fetch('http://localhost:3000/cocktails${params}');
+        const response = await fetch(`http://localhost:3000/cocktails${params}`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
