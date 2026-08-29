@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post } from '@nestjs/common';
 import { Cocktails } from './cocktails.entity';
 import { CocktailsService } from './cocktails.service';
+import { CreateCocktailDto } from './dto/create-cocktail.dto';
 
 @Controller('cocktails')
 export class CocktailsController {
@@ -12,10 +13,7 @@ export class CocktailsController {
   }
 
   @Post()
-  async newCocktail(@Body() cocktail: Cocktails) {
-    console.log('info: creating cocktail', cocktail);
-    const res = await this.cocktailsService.create(cocktail);
-    console.log('res', res);
-    return true;
+  newCocktail(@Body() cocktail: CreateCocktailDto): Promise<Cocktails> {
+    return this.cocktailsService.create(cocktail);
   }
 }
